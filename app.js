@@ -1,3 +1,6 @@
+// Sequence => app.js,routes(user.js), controller(index.js), controller(user(userControllerjs)),
+// service(userService.js), config.js, common(dbConnection.js), model(defination(user(user.js))),
+// model(defination(user(student.js))) , model(defination(index.js)), bin(www)
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
