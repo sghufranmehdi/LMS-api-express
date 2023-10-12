@@ -23,7 +23,7 @@ app.set("port", port);
 var server = http.createServer(app);
 
 db.sequelize
-  .sync()
+  .sync({ logging: false, alter: true })
   .then(() => {
     console.log("Synced DB");
     server.listen(port);

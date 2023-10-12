@@ -1,4 +1,3 @@
-const { log } = require("debug/src/browser");
 var express = require("express");
 var router = express.Router();
 const { userController } = require("../controller/index"); //use .. to go back
