@@ -9,7 +9,7 @@ user.hasOne(student, {
 
 student.belongsTo(user, {
   onDelete: "CASCADE",
-  foreignKey: { name: "userID", allowNull: false, unique: true },
+  foreignKey: { name: "userID", allowNull: false, unique: true }, //foreign key
 });
 
 const models = sequelize.models;
