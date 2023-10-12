@@ -7,7 +7,16 @@ module.exports = {
   },
   createUsers: async (req, res) => {
     const data = await userService.createUsers(req.body);
+    res.send(data);
+  },
 
+  updateUsers: async (req, res) => {
+    const data = await userService.updateUsers(req.body);
+    res.send(data);
+  },
+
+  deleteUsers: async (req, res) => {
+    const data = await userService.deleteUsers(req.body);
     res.send(data);
   },
 };
