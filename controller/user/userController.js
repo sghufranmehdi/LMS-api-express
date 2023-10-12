@@ -1,8 +1,8 @@
 const userService = require("../../service/userService");
 
 module.exports = {
-  getUsers: (req, res) => {
-    const data = userService.getUsers("GET ALL USER");
+  getUsers: async (req, res) => {
+    const data = await userService.getUsers();
     res.send(data);
   },
   createUsers: async (req, res) => {
