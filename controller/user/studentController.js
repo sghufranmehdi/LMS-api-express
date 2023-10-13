@@ -1,17 +1,17 @@
-const student = require("../../models/definations/users/student");
-
+const studentService = require("../../service/studentService");
+const userController = require("./userController");
 module.exports = {
-  createUsers: async (req, res) => {
-    const { firstname, lastname, email, phoneNumer } = req.body;
+  createStudent: async (req, res) => {
+    const { firstName, lastName, email, phoneNumber } = req.body;
     const { rollNo, dept, semester, gpa } = req.body;
-    const user = await userController.createUsers(
-      firstname,
-      lastname,
+    const user = await userController.createUsersHelper({
+      firstName,
+      lastName,
       email,
-      phoneNumer
-    );
+      phoneNumber,
+    });
     //sending key:value pair
-    const data = await studentController.createStudent({
+    const data = await studentService.createStudent({
       rollNo: rollNo,
       dept: dept,
       semester: semester,
@@ -21,61 +21,16 @@ module.exports = {
     res.send(data);
   },
 
-  getUsers: async (req, res) => {
-    const { firstname, lastname, email, phoneNumer } = req.body;
-    const { rollNo, dept, semester, gpa } = req.body;
-    const user = await userController.getUsers(
-      firstname,
-      lastname,
-      email,
-      phoneNumer
-    );
-    //sending key:value pair
-    const data = await studentController.getStudent({
-      rollNo: rollNo,
-      dept: dept,
-      semester: semester,
-      gpa: gpa,
-      userID: user.id,
-    });
+  getStudent: async (req, res) => {
+    const data = await studentService.getStudent();
     res.send(data);
   },
-  updateUsers: async (req, res) => {
-    const { firstname, lastname, email, phoneNumer } = req.body;
-    const { rollNo, dept, semester, gpa } = req.body;
-    const user = await userController.updateUsers(
-      firstname,
-      lastname,
-      email,
-      phoneNumer
-    );
-    //sending key:value pair
-    const data = await studentController.updateStudent({
-      rollNo: rollNo,
-      dept: dept,
-      semester: semester,
-      gpa: gpa,
-      userID: user.id,
-    });
+  updateStudent: async (req, res) => {
+    const data = await studentService.updateStudent(req.params.id, req.body);
     res.send(data);
   },
-  deleteUsers: async (req, res) => {
-    const { firstname, lastname, email, phoneNumer } = req.body;
-    const { rollNo, dept, semester, gpa } = req.body;
-    const user = await userController.deleteUsers(
-      firstname,
-      lastname,
-      email,
-      phoneNumer
-    );
-    //sending key:value pair
-    const data = await studentController.deleteStudent({
-      rollNo: rollNo,
-      dept: dept,
-      semester: semester,
-      gpa: gpa,
-      userID: user.id,
-    });
+  deleteStudent: async (req, res) => {
+    const data = await studentService.deleteStudent(req.params.id);
     res.send(data);
   },
 };

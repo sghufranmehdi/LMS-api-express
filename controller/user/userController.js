@@ -9,14 +9,18 @@ module.exports = {
     const data = await userService.createUsers(req.body);
     res.send(data);
   },
-
+  createUsersHelper: async (data) => {
+    console.log(data);
+    const result = await userService.createUsers(data);
+    return result;
+  },
   updateUsers: async (req, res) => {
-    const data = await userService.updateUsers(req.body);
+    const data = await userService.updateUsers(req.params.id, req.body);
     res.send(data);
   },
 
   deleteUsers: async (req, res) => {
-    const data = await userService.deleteUsers(req.body);
+    const data = await userService.deleteUsers(req.params.id);
     res.send(data);
   },
 };
