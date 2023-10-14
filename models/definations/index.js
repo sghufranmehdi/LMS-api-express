@@ -12,6 +12,16 @@ student.belongsTo(user, {
   foreignKey: { name: "userID", allowNull: false, unique: true }, //foreign key
 });
 
+user.hasOne(teacher, {
+  onDelete: "CASCADE",
+  foreignKey: { name: "userID", allowNull: false, unique: true },
+});
+
+teacher.belongsTo(user, {
+  onDelete: "CASCADE",
+  foreignKey: { name: "userID", allowNull: false, unique: true },
+});
+
 const models = sequelize.models;
 console.log(models);
 const db = {};
