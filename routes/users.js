@@ -1,6 +1,11 @@
 var express = require("express");
 var router = express.Router();
-const { userController, studentController } = require("../controller/index"); //use .. to go back
+const {
+  userController,
+  studentController,
+  teacherController,
+  courseController,
+} = require("../controller/index"); //use .. to go back
 
 /* GET users listing. */
 
@@ -17,6 +22,11 @@ router.delete("/deleteStudent/:id", studentController.deleteStudent);
 router.get("/getTeacher", teacherController.getTeacher);
 router.post("/createTeacher", teacherController.createTeacher);
 router.put("/updateTeacher/:id", teacherController.updateTeacher);
-router.delete("/deleteTeacher/:id", teacherController.deleteTeachert);
+router.delete("/deleteTeacher/:id", teacherController.deleteTeacher);
+
+router.get("/getCourse", courseController.getCourse);
+router.post("/createCourse", courseController.createCourse);
+router.put("/updateCourse/:id", courseController.updateCourse);
+router.delete("/deleteCourse/:id", courseController.deleteCourse);
 
 module.exports = router;

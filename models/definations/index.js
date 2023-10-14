@@ -1,6 +1,8 @@
 let sequelize = require("../../common/dbConnection");
 let user = require("./users/user");
 let student = require("./users/student");
+let teacher = require("./users/teacher");
+let course = require("./users/course");
 
 user.hasOne(student, {
   onDelete: "CASCADE",
@@ -20,6 +22,18 @@ user.hasOne(teacher, {
 teacher.belongsTo(user, {
   onDelete: "CASCADE",
   foreignKey: { name: "userID", allowNull: false, unique: true },
+});
+
+course.belongsToMany(teacher, {
+  through: "TeacherTeaching",
+  onDelete: "CASCADE",
+  foreignKey: { name: "ID", allowNull: false, unique: true },
+});
+
+teacher.belongsToMany(course, {
+  through: "TeacherTeaching",
+  onDelete: "CASCADE",
+  foreignKey: { name: "ID", allowNull: false, unique: true },
 });
 
 const models = sequelize.models;

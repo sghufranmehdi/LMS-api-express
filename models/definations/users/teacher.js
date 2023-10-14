@@ -1,3 +1,4 @@
+const { DataTypes } = require("sequelize");
 const sequelize = require("../../../common/dbConnection");
 const teacher = sequelize.define(
   "teacher",
@@ -8,7 +9,7 @@ const teacher = sequelize.define(
       type: DataTypes.INTEGER,
     },
     education: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     subject: {
