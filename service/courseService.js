@@ -10,17 +10,22 @@ module.exports = {
     console.log(result);
     return result;
   },
-  updateCourse: async (data) => {
+  updateCourse: async (id, data) => {
     console.log(data);
-    const result = await models.course.update(data);
+    console.log(id);
+    const result = await models.course.update(data, { where: { id: id } });
     console.log(result);
     return result;
   },
 
-  deleteCourse: async (data) => {
-    console.log(data);
-    const result = await models.course.drop(data);
+  deleteCourse: async (id) => {
+    console.log(id);
+    let result = await models.course.findByPk(id);
     console.log(result);
-    return result;
+    if (result) {
+      result = await models.course.destroy({ where: { id: id } });
+      return result;
+    }
+    return 404;
   },
 };
