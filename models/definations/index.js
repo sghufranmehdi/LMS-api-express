@@ -26,14 +26,16 @@ teacher.belongsTo(user, {
 
 course.belongsToMany(teacher, {
   through: "TeacherTeaching",
+  as: "Teacher",
   onDelete: "CASCADE",
-  foreignKey: { name: "ID", allowNull: false, unique: true },
+  foreignKey: { name: "cID", allowNull: false },
 });
 
 teacher.belongsToMany(course, {
   through: "TeacherTeaching",
+  as: "Course",
   onDelete: "CASCADE",
-  foreignKey: { name: "ID", allowNull: false, unique: true },
+  foreignKey: { name: "tID", allowNull: false },
 });
 
 const models = sequelize.models;

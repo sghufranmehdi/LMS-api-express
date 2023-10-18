@@ -6,6 +6,7 @@ const {
   teacherController,
   courseController,
 } = require("../controller/index"); //use .. to go back
+const tcController = require("../controller/user/tcController");
 
 /* GET users listing. */
 
@@ -28,5 +29,12 @@ router.get("/getCourse", courseController.getCourse);
 router.post("/createCourse", courseController.createCourse);
 router.put("/updateCourse/:id", courseController.updateCourse);
 router.delete("/deleteCourse/:id", courseController.deleteCourse);
+
+router.post("/course_teacher", tcController.createTc);
+router.get(
+  "/teacher/:teacherID/courses",
+  tcController.getCoursesTaughtByTeacher
+);
+router.get("/course/:courseID/teachers", tcController.getTeachersOfCourse);
 
 module.exports = router;
