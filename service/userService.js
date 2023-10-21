@@ -1,4 +1,5 @@
 const { models } = require("../models/definations");
+const bcrypt = require("bcrypt");
 module.exports = {
   getUsers: async () => {
     const result = await models.user.findAll();
@@ -6,6 +7,8 @@ module.exports = {
   },
   createUsers: async (data) => {
     console.log(data);
+    const salltROute = 10;
+    data.password = bcrypt.hashSync(data.password, salltROute);
     const result = await models.user.create(data);
     console.log(result);
     return result;
