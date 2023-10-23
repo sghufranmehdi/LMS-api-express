@@ -9,6 +9,10 @@ var logger = require("morgan");
 const database = require("./common/dbConnection"); // imported for db connection
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var courseRouter = require("./routes/course");
+var studentRouter = require("./routes/student");
+var teacherRouter = require("./routes/teacher");
+var teacherTeachingRouter = require("./routes/teacherTeaching");
 
 var app = express();
 
@@ -24,6 +28,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/course", courseRouter);
+app.use("/student", studentRouter);
+app.use("/teacher", teacherRouter);
+app.use("teacherteaching", teacherTeachingRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
